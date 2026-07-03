@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     "Prototype community web app for learners, job seekers, church events, sponsors, resources, and AI career guidance."
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">

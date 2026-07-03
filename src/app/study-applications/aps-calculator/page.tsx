@@ -60,7 +60,7 @@ export default function ApsCalculatorPage() {
       </section>
 
       <section className="section">
-        <div className="admin-layout" style={{ gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+        <div className="admin-layout" style={{ gap: "24px" }}>
           
           {/* LEFT: FORM */}
           <div className="form-panel">

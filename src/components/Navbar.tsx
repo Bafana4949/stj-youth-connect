@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const navItems = [
   { href: "/our-story", label: "Our Story" },
@@ -13,15 +16,26 @@ const navItems = [
 ];
 
 export function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="site-header">
-      <Link href="/" className="brand" aria-label="St.J Youth Connect home">
-        <Image src="/assets/stj-logo.jpg" alt="St.J logo" width={52} height={52} className="brand-logo" priority />
+      <Link href="/" className="brand" aria-label="St.J Youth Connect home" onClick={() => setIsMobileMenuOpen(false)}>
+        <Image src="/assets/stj-logo.jpg" alt="St.J logo" width={48} height={48} className="brand-logo" priority />
         <div>
           <strong>St.J Youth Connect</strong>
-          <span>Guidance • Opportunities • Growth</span>
+          <span className="hide-on-mobile">Guidance • Opportunities • Growth</span>
         </div>
       </Link>
+      
+      <button 
+        className="hamburger" 
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? "✕" : "☰"}
+      </button>
+
       <nav className="main-nav" aria-label="Main navigation">
         {navItems.map((item) => (
           <Link href={item.href} key={item.href}>
@@ -29,6 +43,20 @@ export function Navbar() {
           </Link>
         ))}
       </nav>
+
+      {isMobileMenuOpen && (
+        <nav className="mobile-menu" aria-label="Mobile navigation">
+          {navItems.map((item) => (
+            <Link 
+              href={item.href} 
+              key={item.href} 
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
